@@ -1,0 +1,60 @@
+{%extends 'home.html'%}
+{%load static%}
+  {%block content%}
+  
+  <body>
+    <div id='mainblock'>
+      <div id='post'>
+        <img src='istockphoto-1439973042-612x612.jpg'/>
+        <h2>{{post.title}}</h2>
+      <hr>
+      <br>
+      <div class='block'><p align='center'><img class='pic' src="{{post.img.url}}" wigth='50%'></p>
+      <p class='descr'>{{post.descript}}<p></div>
+      <br>
+      <hr>
+      <p>{{post.author}}<p>
+      </div>
+    </div>
+    <div>
+      <p style='font-weight: bold;'><a href={%url "add_likes" post.id%} style='font-size: 30px;'>❤ </a>Понравилось: {{post.likes_set.all.count}}</p>
+
+      
+
+
+      
+      
+
+    </div>
+      
+      <div id = 'create'>
+        <hr>
+        <a class = 'com'href='#'>Оставить комментарий</a><br><br>
+        <form action='{%url "comment" post.id%}' method='post'>
+            {% csrf_token %}
+            
+            <textarea class='men'name='textcom' placeholder="Ваш комментарий"></textarea><br> <! ссылка на поле в модели админки, чтобы данные попав во вью занеслись в админке>
+            
+            <input class='inp' type='text' name ='name' placeholder="Ваше имя"><br>
+            <button class = 'sub' type='submit'>Опубликовать</button>
+
+        </form>
+        
+      </div>
+      <h3 class='headcomm'>Комментарии</h3>
+      <div id = 'comm'>
+        {%for comment in post.comments_set.all%}
+        <div='onecom'>
+            <h3>{{comment.name}}</h3>
+            <p>{{comment.textcom}}</p>
+            <hr>
+
+
+        </div>
+
+        {%endfor%}
+
+      </div>
+
+
+  {%endblock%}

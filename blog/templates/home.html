@@ -1,0 +1,28 @@
+
+{%load static%}
+
+<head>
+  <meta charset="UTF-8">
+  <title>Мой косплей блог</title>
+  <link rel='stylesheet' href = "{%static 'css/stl.css'%}"  type='text/css' media='all'/>
+</head>
+
+<body>
+  
+
+    <h1 id='head'><a href='{%url "home"%}'>teLLMe</a></h1>
+    <p class='us'>Hello, {{user}}!<p>
+
+    {%if user.is_authenticated%}
+        <div class='lin'><a href='{%url "logout"%}'>Logout</a> | <a href='{%url "add"%}'>Add post</a></div>
+        
+    {%else%}
+        <div class='lin'><a href='{%url "login"%}'>Login</a> | <a href='{%url "register"%}'>Registrate</a> </div>
+        
+    {%endif%}
+    {%block content%}
+
+    {%endblock%}
+
+
+

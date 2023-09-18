@@ -1,0 +1,46 @@
+{%extends 'home.html'%}
+    {%load static%}
+    {%block content%}
+    <form  action='{%url "home"%}' style='display: flex;
+    flex-direction: row-reverse;'>
+    
+      <input class="searching" type="search" placeholder="Search" aria-label="Search" name='search'>
+      <button class="btno" type="submit">Search</button>
+    </form>
+    
+  
+
+    {%if post_list%}
+      {%for post in post_list%}
+      <div id='mainblock'>
+        <div id='post'>
+          <h2 class='headelement'><a style='color:grey;' href='{{post.id}}'>{{post.title}}</a></h2>
+        <hr>
+        <br>
+        {%if post.img.url%}
+          <div class='block'><img class='pic' src="{{post.img.url}}">
+        {%endif%}
+        <p class='descr'>{{post.descript}}<p></div>
+        <br>
+        <hr>
+        <p class='aut'>{{post.author}}<p>
+        </div>
+      </div>
+      {%endfor%}
+    {%else%}
+      {%if user.is_authenticated%}
+        <p class="empty"><a href='{%url "add"%}'>ADD FIRST POST!</a></p>
+      {%else%}
+        <p class="empty"><a href='{%url "login"%}'>LOGIN TO ADD FIRST POST!</a></p>
+      {%endif%}
+
+      
+
+    {%endif%}  
+
+   
+    {%endblock%}
+
+ 
+
+    

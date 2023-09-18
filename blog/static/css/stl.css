@@ -1,0 +1,136 @@
+#mainblock {background-color: rgb(255, 255, 255);}
+#post .pic {width:230px;}
+#post .block {display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    align-items: stretch;}
+#post .descr{   position: relative;
+    /* width: 1500px; */
+    padding: 20px;}
+
+#head{    /* display: flex; */
+    align-content: space-between;
+    /* flex-direction: row-reverse; */
+    /* align-items: center; */
+    /* position: absolute; */
+    justify-content: center;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    align-content: center;
+    align-items: center;
+    font-size: 50px;
+    font-family: math;
+    margin: 0.3px;
+}
+.us{    display: flex;
+    /* flex-direction: row-reverse; */
+    position: relative;
+    justify-content: center;}
+
+#addp{display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        top: 21px;
+        align-content: space-around;
+        position: relative;
+    }
+
+
+.lin{    /* display: flex; */
+    flex-direction: row;
+    font-size: 20px;
+    width: 10%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: baseline;
+    align-items: inherit;
+    text-align-last: end;
+    align-content: end;
+    max-width: 8em;
+    min-height: 2em;
+    margin-left: auto;
+    margin-right: 0;
+    justify-items: right;}
+
+#post .headelement{ color:grey}
+
+.aut {    font-family: cursive;
+    color: #0000008a;}
+.com {    font-size: 20px;
+    font-weight: bold;}
+.men {    width: 99%;
+    height: 20%; margin: 5px;     font-size: 20px;
+    font-family: emoji;}
+.inp {    width: 50%; margin: 5px;     font-size: 20px;
+    font-family: emoji;
+    }
+.sub {margin: 5px;
+    font-size: 20px;
+    font-family: revert;transition: .5s; border:none}
+.sub:hover {transform: scale(1.1); background-color: white; color: #000 grey; border-color: grey;}
+.headcomm {align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;}
+    #id_username{width: 10%;}
+a{text-decoration: none;color:black}
+.rp{display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+.subs {font-size: 25px;
+    margin: 20px;
+    width: 30%;
+    height: 50px; transition: .5s; border:none}
+.subs:hover{transform: scale(1.1); background-color: white; color: #000 grey; border-color: grey;}
+.logform{display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    font-size: 20px;}
+.fp{  display: flex;
+    /* flex-direction: row-reverse; */
+    position: relative;
+    justify-content: center;}
+.reg{display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-size: 20px;
+}
+.addbut{    margin: 8px;
+    height: 40px;transition: .5s;}
+.addbut:hover{transform: scale(1.2); background-color: aliceblue;}
+.addtext {border: solid;
+    border-color: grey;
+    padding: 10px;}
+.empty a{  
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    /* align-items: center; */
+    font-size: 50px;
+    font-family: math;
+    margin: 0.3px;
+    margin-top: 230px;
+    color: gray;
+    transition: .5s;
+    margin-left: 463px;
+    width: 50%;}
+
+.btno{transition: .5s; border: none;}
+.btno:hover {transform: scale(1.1); background-color: white; color: #000 grey; border-color: grey;}
+.empty a:hover {transform: scale(1.2);color:black;}   
+.lin{ transition: .5s;}
+.lin:hover{transform: scale(1.2);margin-right: 20px; }
+#id_title, #id_descript, #id_author, #id_date{    font-family: cursive;}
+
+#mainblock, #create {transition: .5s;}
+
+#mainblock:hover, #create:hover {background-color: #d9d8d8;}
+
+.hidden {    overflow: hidden;
+    opacity: 0;}
+

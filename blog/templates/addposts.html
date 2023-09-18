@@ -1,0 +1,37 @@
+{%extends 'home.html'%}
+    {%load static%}
+    {%block content%}
+    <div>
+      <h3 style='display: flex;
+      /* flex-direction: row-reverse; */
+      position: relative;
+      justify-content: center; font-size: 25px;'>Добавить пост</h3>
+      <hr>
+      
+      <form method="POST" enctype="multipart/form-data" id='addp'>
+        {% csrf_token %}
+        <div class='addtext'>
+          
+          <input type="text" name="title" maxlength="100" required="" id="id_title" placeholder="Название поста"><br>
+          <br>
+          <textarea name="descript" cols="40" rows="10" required="" id="id_descript" placeholder="Содержание поста"></textarea> <br>
+          <br>
+          <input type="text" name="author" maxlength="100" required="" id="id_author" placeholder="Ваше имя"><br>
+          <br>
+          
+          <br>
+          {{form.img}} <br>
+        </div>
+       
+      
+        
+
+        
+        <button type="submit" class='addbut'>Отправить</button> <br>
+
+    </form>
+
+
+    </div>
+
+   {%endblock%}

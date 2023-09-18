@@ -1,0 +1,23 @@
+
+
+{%extends 'home.html'%}
+    {%load static%}
+    {%block content%}
+
+
+<body>
+
+    <h1 style='display: flex;
+    /* flex-direction: row-reverse; */
+    position: relative;
+    justify-content: center;
+    font-weight: 600;'>Registration</h1>
+
+    <form action='{%url "register"%}' method='post' class='reg'>
+        {{form}}
+        {%csrf_token%}
+        <button type='submit' class = 'subs'>Submit</button>
+
+
+    </form>
+    {%endblock%}

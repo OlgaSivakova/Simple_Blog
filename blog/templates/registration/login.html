@@ -1,0 +1,28 @@
+{%extends 'home.html'%}
+{%load static%}
+  {%block content%}
+
+
+
+
+    <h1>Login</h1>
+    <hr>
+
+    {%if form.errors%}
+        <p>{{form.errors.error}}</p>
+    {%endif%}
+
+
+    <form action='{%url "login"%}' method="post" class='logform'>
+        {{form}}
+        {%csrf_token%}
+        <br>
+        <button type='submit' class='btno'>Submit</button>
+
+
+    </form>
+    <a href="{%url 'password_reset' %}" style='display: flex;
+    /* flex-direction: row-reverse; */
+    position: relative;
+    justify-content: center;'>Forgot password?</a>
+    {%endblock%}
