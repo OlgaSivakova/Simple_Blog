@@ -38,7 +38,7 @@ class PostView(View):
     def get(self, request): #request -инфа от пользователя, self = имя модели
         searchq = request.GET.get('search', '')
         if searchq:
-            posts = Post.objects.filter(Q(title__icontains =searchq) | Q(descript__icontains=searchq))
+            posts = Post.objects.filter(Q(title =searchq) | Q(descript=searchq))
             
         else:
             posts = Post.objects.all()
@@ -51,6 +51,12 @@ class PostElement(View):
     def get(self, request, pk):
         post = Post.objects.get(id=pk) #одна запись
         return render(request, 'blogelement.html', {'post': post} )
+    
+class DelElement(View):
+    def get(self, request, pk):
+        post = Post.objects.get(id=pk) #одна запись
+        post.delete()
+        return redirect('home')
 
 class AddComments(View):
     def post(self, request, pk):

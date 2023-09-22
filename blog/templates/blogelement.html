@@ -3,9 +3,11 @@
   {%block content%}
   
   <body>
+    <a  href='{%url "home"%}'><img style = 'width: 30px;'src='https://sun9-65.userapi.com/impg/aVNXjc8e0eDTHRJW_Px_XgYCHAbQU9QwlTiZ9A/eeREHI7tT60.jpg?size=512x512&quality=95&sign=87ecba353756021f6f704fc005b95599&type=album'/></a>
     <div id='mainblock'>
+      
       <div id='post'>
-        <img src='istockphoto-1439973042-612x612.jpg'/>
+        
         <h2>{{post.title}}</h2>
       <hr>
       <br>
@@ -26,6 +28,7 @@
       
 
     </div>
+    <div><a href='{%url "del" post.id%}'> del</a></div>
       
       <div id = 'create'>
         <hr>
