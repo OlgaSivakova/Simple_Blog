@@ -93,23 +93,17 @@ def addpost(request):
     return render(request, 'addposts.html', {'form':form})
 
 
-def get_client_ip(request):
-    x_forw = request.META.get('HTTP_X_FORW')
-    if x_forw:
-        ip = x_forw.split(',')[0]
-    else:
-        ip = request.META.get("REMOTE_ADDR")
-    return ip
+
 
 class AddLike(View):
     def get(self,request,pk):
-        ip_client = get_client_ip(request)
+        ip_client = request.user
         try:
             Likes.objects.get(ip=ip_client, pos_id=pk)
             return redirect(f'/{pk}')
         except:
             new_like = Likes()
-            new_like.p = ip_client
+            new_like.ip = ip_client
             new_like.pos_id = int(pk)
             new_like.save()
             return redirect(f'/{pk}')
@@ -117,9 +111,9 @@ class AddLike(View):
         
 class DelLike(View):
     def get(self,request,pk):
-        ip_client = get_client_ip(request)
+        ip_client = request.user
         try:
-            lik = Likes.objects.get(ip=ip_client)
+            lik = Likes.objects.get(ip=ip_client, pos_id=pk)
             lik.delete()
             return redirect(f'/{pk}') #удаляем запись из модели по ай пи
         except:

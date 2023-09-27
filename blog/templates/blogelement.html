@@ -19,7 +19,9 @@
       </div>
     </div>
     <div>
-      <p style='font-weight: bold;'><a href={%url "add_likes" post.id%} style='font-size: 30px;'>❤ </a>Понравилось: {{post.likes_set.all.count}}</p>
+      <p style='font-weight: bold;'><a href={%url "add_likes" post.id%} style='font-size: 30px;'>❤ </a>
+        <p style='font-weight: bold;'><a href={%url "del_likes" post.id%} style='font-size: 30px;'>❤ </a>
+        Понравилось: {{post.likes_set.all.count}}</p>
 
       
 
@@ -28,12 +30,14 @@
       
 
     </div>
+    {%if user.is_superuser%}
     <div><a href='{%url "del" post.id%}'> del</a></div>
+    {%endif%}
       
       <div id = 'create'>
         <hr>
         <a class = 'com'href='#'>Оставить комментарий</a><br><br>
-        <form action='{%url "comment" post.id%}' method='post'>
+        <form action='{%url "comment" post.id%}' method='post'> <!--ссылка на вьюху-->
             {% csrf_token %}
             
             <textarea class='men'name='textcom' placeholder="Ваш комментарий"></textarea><br> <! ссылка на поле в модели админки, чтобы данные попав во вью занеслись в админке>
@@ -50,7 +54,7 @@
         <div='onecom'>
             <h3>{{comment.name}}</h3>
             <p>{{comment.textcom}}</p>
-            <hr>
+            <hr> <!--отобразить комы на странице-->
 
 
         </div>
