@@ -5,10 +5,11 @@ from django.contrib.auth import authenticate, login
 
 
 from django.views.generic.base import View #для представления по классам
-from .models import Post, Likes
+from .models import *
 from .forms import CommentsForm, PostForm
 from django.db.models import Q
- 
+from rest_framework import generics
+from .serializer import *
 # Create your views here.
 class Register(View):
     template_name = 'registration/register.html'
@@ -38,10 +39,10 @@ class PostView(View):
     def get(self, request): #request -инфа от пользователя, self = имя модели
         searchq = request.GET.get('search', '')
         if searchq:
-            posts = Post.objects.filter(Q(title =searchq) | Q(descript=searchq))
+            posts = Post.objects.filter(Q(title__iregex =searchq) | Q(descript__iregex=searchq)).titles()
             
         else:
-            posts = Post.objects.all()
+            posts = Post.objects.titles()#новые записи наверх
         return render(request, 'base.html', {'post_list': posts})
     
     
@@ -119,4 +120,10 @@ class DelLike(View):
         except:
            
             return redirect(f'/{pk}')
+class PostCRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
     
+class PostAPIlist(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer

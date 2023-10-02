@@ -1,17 +1,26 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime  
 
 
 # Create your models here.
+class PostQuerrySet(models.QuerySet):
+    def titles(self):
+        return self.order_by('-dats')
+
 class Post(models.Model):
     title = models.CharField('Заголовок записи', max_length=100)
     descript = models.TextField('Текст блога')
     author = models.CharField('Имя автора', max_length=100)
+    dats = models.DateTimeField(default=datetime.now())
     
     img = models.ImageField('Изображение', upload_to = 'image/%Y')# c указанием текущего года, это путь где будут храниться все излбражения с админки
     
+    objects =  PostQuerrySet.as_manager()
+    
     def __str__(self):
         return f'{self.title}, {self.author}' #отображение в списке всех записей в админке
+    
     
     class Meta:
         verbose_name = 'Запись' #красивое отображение  в админке

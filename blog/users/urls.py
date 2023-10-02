@@ -12,6 +12,8 @@ urlpatterns = [path('', include('django.contrib.auth.urls')),
                 path('comments/<int:pk>',views.AddComments.as_view(), name='comment'),
                 path('<int:pk>/add_likes/',views.AddLike.as_view(), name='add_likes'),
                 path('<int:pk>/del_likes/',views.DelLike.as_view(), name='del_likes'),
+                path('api/v1/postlist/<int:pk>',views.PostCRUD.as_view(), name='serializ'),
+                path('api/v1/postlist/',views.PostAPIlist.as_view(), name='serializall'),
                 
                      ]
 
