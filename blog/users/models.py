@@ -30,7 +30,7 @@ class Post(models.Model):
 class Comments(models.Model):
     name = models.CharField('Имя автора', max_length=100)
     textcom = models.TextField('Комментарий', max_length=2000)
-    post = models.ForeignKey(Post, verbose_name="Публикация",on_delete=models.CASCADE) #связь с моделью публикацийь при удалении - каскад - удаляется и комментарий к публикации
+    post = models.ForeignKey(Post, verbose_name="Публикация",on_delete=models.CASCADE, related_name='compos') #связь с моделью публикацийь при удалении - каскад - удаляется и комментарий к публикации
     
     def __str__(self):
         return f'{self.name}, {self.post}' #отображение в списке всех записей в админке
@@ -46,3 +46,33 @@ class User(AbstractUser):
 class Likes(models.Model):
     ip = models.CharField('IP-адрес', max_length=100)
     pos = models.ForeignKey(Post, verbose_name='Понравившееся', on_delete=models.CASCADE)
+    
+    
+    
+class Dressingroom(models.Model):
+    num = models.CharField('Номсер гримёрки', max_length=100)
+    
+    def __str__(self):
+        return f'{self.num}'
+    
+class Director(models.Model):
+    dirname = models.CharField('Имя режисёра', max_length=100)
+    
+    def __str__(self):
+        return f'{self.dirname}'
+    
+class Movie(models.Model):
+    title = models.CharField('Имя актёра', max_length=100)
+    direc = models.ForeignKey(Director,on_delete=models.CASCADE, null = True, blank=True, related_name='moviess')
+
+    def __str__(self):
+        return f'{self.title}, {self.direc}'
+    
+class Actor(models.Model):
+    name = models.CharField('Имя актёра', max_length=100)
+    dress = models.OneToOneField(Dressingroom, on_delete=models.CASCADE, null = True, blank=True)
+    mov = models.ManyToManyField(Movie, related_name='connect')
+    
+    def __str__(self):
+        return f'{self.name}, {self.dress}'
+    

@@ -14,6 +14,8 @@ urlpatterns = [path('', include('django.contrib.auth.urls')),
                 path('<int:pk>/del_likes/',views.DelLike.as_view(), name='del_likes'),
                 path('api/v1/postlist/<int:pk>',views.PostCRUD.as_view(), name='serializ'),
                 path('api/v1/postlist/',views.PostAPIlist.as_view(), name='serializall'),
+                path('movies/',  views.MoviesView.as_view(), name='movie'),
+                path('change/',  views.changepas, name='change')
                 
                      ]
 

@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login
 
 
 from django.views.generic.base import View #для представления по классам
-from .models import *
+from .models import Comments, Post, Actor, Director, Dressingroom, Movie, User
+
 from .forms import CommentsForm, PostForm
 from django.db.models import Q
 from rest_framework import generics
@@ -127,3 +128,61 @@ class PostCRUD(generics.RetrieveUpdateDestroyAPIView):
 class PostAPIlist(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    
+    
+def changepas(request):
+    context = {}
+    if request.method=='POST':
+        cur = request.POST['old']
+        new = request.POST['newp']
+        
+        user = User.objects.get(id = request.user.id)
+        us = user.username
+        check = user.check_password(cur)
+    
+        
+        if check==True:
+            user.set_password(new)
+            user.save()
+            user = User.objects.get(username=us)
+            login(request, user)
+        else:
+            context['msg'] = 'Uncorrect current password'
+            
+        
+    return render(request, 'change.html', context)
+        
+        
+class MoviesView(View):
+    def get(self, request):
+        post = Actor.objects.all().prefetch_related('mov')
+        l = []
+        for pos in post:
+            l.append(pos.name)
+            p = pos.mov.all()
+            for r in p:
+                l.append(r.title)
+                l.append(r.direc.dirname)
+            
+      
+      
+        return render(request, 'movie.html', {'post': l} )
+
+class MoviesView(View):
+
+    def get(self, request):
+        post = Director.objects.prefetch_related('moviess').all()
+        l = []
+        for pos in post:
+            l.append(pos.dirname)
+            p = pos.moviess.all()
+            for r in p:
+                l.append(r.title)
+                
+            
+        
+                
+            
+      
+      
+#         return render(request, 'movie.html', {'post': l} )

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Мой косплей блог</title>
-  <link rel='stylesheet' href = "{%static 'css/stl.css'%}"  type='text/css' media='all'/>
+  <link rel='stylesheet' href = "{%static 'css/stil.css'%}"  type='text/css' media='all'/>
 </head>
 
 <body>
@@ -15,6 +15,8 @@
 
     {%if user.is_authenticated%}
         <div class='lin'><a href='{%url "logout"%}'>Logout</a> | <a href='{%url "add"%}'>Add post</a></div>
+        <div class='lin'><a href='{%url "change"%}'>Change password</a> </div>
+
         
     {%else%}
         <div class='lin'><a href='{%url "login"%}'>Login</a> | <a href='{%url "register"%}'>Registrate</a> </div>

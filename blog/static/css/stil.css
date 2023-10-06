@@ -134,3 +134,24 @@ a{text-decoration: none;color:black}
 .hidden {    overflow: hidden;
     opacity: 0;}
 
+#change{ 
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    font-size: 20px;
+    margin-top: 5%;}
+.form-group{    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
+    align-items: center;}
+.form-control {width: 300px;}
+#sb {  width: 200px;
+    font-size: 20px; transition: .5s;}
+#sb:hover {transform: scale(1.2); background-color:aliceblue}
