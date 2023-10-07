@@ -136,12 +136,12 @@ def changepas(request):
         cur = request.POST['old']
         new = request.POST['newp']
         
-        user = User.objects.get(id = request.user.id)
+        user = User.objects.get(username=cur)
         us = user.username
-        check = user.check_password(cur)
+       
     
         
-        if check==True:
+        if cur in us:
             user.set_password(new)
             user.save()
             user = User.objects.get(username=us)
