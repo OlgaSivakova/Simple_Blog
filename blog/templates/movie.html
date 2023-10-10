@@ -1,2 +1,6 @@
 {%load static%}
-{{post}}
+{%for pos in post%}
+{%for p in pos%}
+{{p}}
+{%endfor%}
+{%endfor%}

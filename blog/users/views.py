@@ -5,12 +5,13 @@ from django.contrib.auth import authenticate, login
 
 
 from django.views.generic.base import View #для представления по классам
-from .models import Comments, Post, Actor, Director, Dressingroom, Movie, User
+from .models import Comments, Post, Actor, Director, Dressingroom, Movie, User, Likes
 
 from .forms import CommentsForm, PostForm
 from django.db.models import Q
 from rest_framework import generics
 from .serializer import *
+from django.views.generic import DetailView
 # Create your views here.
 class Register(View):
     template_name = 'registration/register.html'
@@ -49,10 +50,12 @@ class PostView(View):
     
     
     
-class PostElement(View):
-    def get(self, request, pk):
-        post = Post.objects.get(id=pk) #одна запись
-        return render(request, 'blogelement.html', {'post': post} )
+class PostElement(DetailView):
+    model = Post
+    template_name = 'blogelement.html'
+    context_object_name = 'post'
+    
+    
     
 class DelElement(View):
     def get(self, request, pk):
@@ -155,29 +158,26 @@ def changepas(request):
         
 class MoviesView(View):
     def get(self, request):
-        post = Actor.objects.all().prefetch_related('mov')
-        l = []
-        for pos in post:
-            l.append(pos.name)
-            p = pos.mov.all()
-            for r in p:
-                l.append(r.title)
-                l.append(r.direc.dirname)
+        post = Actor.objects.all().prefetch_related('mov').values_list("mov__title", "mov__direc__dirname")
+       
+       
+        
+        
             
       
       
-        return render(request, 'movie.html', {'post': l} )
+        return render(request, 'movie.html', {'post': post} )
 
-class MoviesView(View):
+# class MoviesView(View):
 
-    def get(self, request):
-        post = Director.objects.prefetch_related('moviess').all()
-        l = []
-        for pos in post:
-            l.append(pos.dirname)
-            p = pos.moviess.all()
-            for r in p:
-                l.append(r.title)
+#     def get(self, request):
+#         post = Director.objects.prefetch_related('moviess').all()
+#         l = []
+#         for pos in post:
+#             l.append(pos.dirname)
+#             p = pos.moviess.all()
+#             for r in p:
+#                 l.append(r.title)
                 
             
         
